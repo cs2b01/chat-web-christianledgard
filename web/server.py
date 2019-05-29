@@ -17,6 +17,8 @@ def static_content(content):
     return render_template(content)
 
 
+
+
 @app.route('/users', methods = ['GET'])
 def get_users():
     session = db.getSession(engine)
@@ -25,6 +27,43 @@ def get_users():
     for user in dbResponse:
         data.append(user)
     return Response(json.dumps(data, cls=connector.AlchemyEncoder), mimetype='application/json')
+
+@app.route('/users', methods = ['POST'])
+def post_users():
+    c =  json.loads(request.form['values'])
+    user = entities.User(
+        username=c['username'],
+        name=c['name'],
+        fullname=c['fullname'],
+        password=c['password']
+    )
+    session = db.getSession(engine)
+    session.add(user)
+    session.commit()
+    return 'Created User'
+
+@app.route('/users', methods = ['PUT'])
+def update_users():
+    session = db.getSession(engine)
+    id = request.form['key']
+    user = session.query(entities.User).filter(entities.User.id == id).first()
+    c =  json.loads(request.form['values'])
+    for key in c.keys():
+        setattr(user, key, c[key])
+    session.add(user)
+    session.commit()
+    return 'Updated User'
+
+@app.route('/users', methods = ['DELETE'])
+def delete_user():
+    id = request.form['key']
+    session = db.getSession(engine)
+    messages = session.query(entities.User).filter(entities.User.id == id)
+    for message in messages:
+        session.delete(message)
+    session.commit()
+    return "User Deleted"
+
 
 
 @app.route('/users/<id>', methods = ['GET'])
@@ -37,6 +76,7 @@ def get_user(id):
 
     message = { 'status': 404, 'message': 'Not Found'}
     return Response(message, status=404, mimetype='application/json')
+
 
 @app.route('/create_test_users', methods = ['GET'])
 def create_test_users():
