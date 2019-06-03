@@ -38,10 +38,10 @@ $(function(){
             dataField: "content"
         }, {
             dataField: "sent_on",
+            dataType: "datetime",
             allowEditing: false
         }, {
             dataField: "user_from_id",
-            dataType: "number",
             lookup: {
                 dataSource: DevExpress.data.AspNet.createStore({
                     key: "id",
@@ -50,12 +50,11 @@ $(function(){
                         ajaxOptions.xhrFields = { withCredentials: true };
                     }
                 }),
-                valueExpr: "id",
-                displayExpr: "number"
+                displayExpr: "username",
+                valueExpr: "id"
             }
         }, {
             dataField: "user_to_id",
-            dataType: "number",
             lookup: {
                 dataSource: DevExpress.data.AspNet.createStore({
                     key: "id",
@@ -64,8 +63,9 @@ $(function(){
                         ajaxOptions.xhrFields = { withCredentials: true };
                     }
                 }),
-                valueExpr: "id",
-                displayExpr: "number"
+                displayExpr: "username",
+                valueExpr: "id"
+
             }
         },  ],
     }).dxDataGrid("instance");

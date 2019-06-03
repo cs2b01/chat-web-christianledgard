@@ -89,8 +89,8 @@ def delete_user():
     id = request.form['key']
     session = db.getSession(engine)
     messages = session.query(entities.User).filter(entities.User.id == id)
-    for user in users:
-        session.delete(user)
+    for message in messages:
+        session.delete(message)
     session.commit()
     return "User Deleted"\
 
@@ -100,18 +100,16 @@ def get_chat():
     session = db.getSession(engine)
     dbResponse = session.query(entities.Message)
     data = []
-
     for message in dbResponse:
         data.append(message)
+    return Response(json.dumps(data,  cls=connector.AlchemyEncoder), mimetype='application/json')
 
-    return Response(json.dumps(data, cls=connector.AlchemyEncoder), mimetype='application/json')
 
 @app.route('/chat', methods = ['POST'])
 def post_chat():
-    c =  json.loads(request.form['values'])
+    c = json.loads(request.form['values'])
     message = entities.Message(
         content=c['content'],
-        sent_on = datetime.datetime.now(),
         user_from_id=c['user_from_id'],
         user_to_id=c['user_to_id']
     )
@@ -131,6 +129,7 @@ def update_chat():
     session.add(message)
     session.commit()
     return 'Updated User'
+
 
 @app.route('/chat', methods = ['DELETE'])
 def delete_chat():

@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16051b00-6d4f-42dd-a100-f5cc678983a2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/templates/fail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/templates/success.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/chat.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/model/entities.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/model/entities.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/crud_users.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/crud_users.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/crud_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/crud_users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/crud_chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/crud_chat.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11">
-              <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
+            <state relative-caret-position="247">
+              <caret line="116" column="24" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
               <folding>
                 <element signature="e#0#77#0" expanded="true" />
               </folding>
@@ -40,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/model/entities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="16" column="35" selection-start-line="16" selection-end-line="17" />
+            <state relative-caret-position="307">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="13" />
               <folding>
                 <element signature="e#0#78#0" expanded="true" />
               </folding>
@@ -52,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/templates/crud_chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="67" column="26" lean-forward="true" selection-end-line="72" />
+            <state relative-caret-position="310">
+              <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -78,6 +70,7 @@
       <find>json</find>
       <find>key</find>
       <find>users</find>
+      <find>post_chat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -95,10 +88,10 @@
         <option value="$PROJECT_DIR$/web/templates/success.html" />
         <option value="$PROJECT_DIR$/web/templates/login.html" />
         <option value="$PROJECT_DIR$/web/templates/crud_chat.html" />
-        <option value="$PROJECT_DIR$/web/model/entities.py" />
         <option value="5ae9bca1-1472-4842-9b51-3ac4c374b94b/consoles/Connection" />
         <option value="54c55d44-603d-404b-b3c4-e4c65b0da9aa/consoles/Connection" />
         <option value="$PROJECT_DIR$/web/server.py" />
+        <option value="$PROJECT_DIR$/web/model/entities.py" />
         <option value="$PROJECT_DIR$/web/templates/crud_chat.js" />
       </list>
     </option>
@@ -337,33 +330,6 @@
       </provider>
     </entry>
     <entry file="db://5ae9bca1-1472-4842-9b51-3ac4c374b94b/consoles/Connection" />
-    <entry file="db://54c55d44-603d-404b-b3c4-e4c65b0da9aa/consoles/Connection">
-      <provider selected="true" editor-type-id="0.CONSOLE">
-        <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/model/entities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="35" selection-start-line="16" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#78#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
-          <folding>
-            <element signature="e#0#77#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/templates/crud_chat.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -378,10 +344,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="db://54c55d44-603d-404b-b3c4-e4c65b0da9aa/consoles/Connection">
+      <provider selected="true" editor-type-id="0.CONSOLE">
+        <state line="0" column="19" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/model/entities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="116" column="24" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/templates/crud_chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="67" column="26" lean-forward="true" selection-end-line="72" />
+        <state relative-caret-position="310">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
         </state>
       </provider>
     </entry>
