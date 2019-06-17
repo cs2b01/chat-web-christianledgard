@@ -15,6 +15,7 @@ $(function(){
             }
         }),
         editing: {
+
             allowUpdating: true,
             allowDeleting: true,
             allowAdding: true
@@ -38,6 +39,10 @@ $(function(){
             dataField: "content"
         }, {
             dataField: "sent_on",
+            dataType: "datetime",
+            allowEditing: false
+        }, {
+            dataField: "last_seen",
             dataType: "datetime",
             allowEditing: false
         }, {
