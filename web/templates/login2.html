@@ -107,17 +107,19 @@
                 //alert(JSON.stringify(response));
 				$('#action').html(response['statusText']);
             },
+						success: function(response) {
+							$('#loading').hide();
+							$('#ok').show();
+							window.location.href = "http://127.0.0.1:8080/"
+            },
+
+            //If there was no resonse from the server
             error: function(response){
-				//alert(JSON.stringify(response));
-				if(response["status"]==401){
-					$('#loading').hide();
-					$('#fail').show();
-				}else{
-					$('#loading').hide();
-					$('#ok').show();
-					window.location.href = "http://127.0.0.1:8080/"
-				}
+							$('#loading').hide();
+							$('#fail').show();
             }
+
+
         });
     }
 

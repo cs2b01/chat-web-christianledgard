@@ -281,9 +281,11 @@ def authenticate():
             ).one()
         session['logged_user']=user.id
         message = {'message': 'Authorized'}
+        message = json.dumps(message, cls=connector.AlchemyEncoder)
         return Response(message, status=200, mimetype='application/json')
     except Exception:
         message = {'message': 'Unauthorized'}
+        message = json.dumps(message, cls=connector.AlchemyEncoder)
         return Response(message, status=401, mimetype='application/json')
 
 # - - - - - - - - - - - - - - - - - - - - - - - #
