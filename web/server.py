@@ -6,7 +6,7 @@ import json
 import time
 from datetime import datetime
 from sqlalchemy.sql import func
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 
 db = connector.Manager()
 engine = db.createEngine()
@@ -83,25 +83,6 @@ def delete_chat():
 @app.route('/chat/getConversation/<id1>/and/<id2>', methods = ['GET'])
 def get_chats_id(id1, id2):
     db_session = db.getSession(engine)
-    """
-    info1 = db_session.query(entities.Message).filter(
-        entities.Message.user_from_id == id1).filter(
-        entities.Message.user_to_id == id2)
-
-    info2 = db_session.query(entities.Message).filter(
-        entities.Message.user_from_id == id2).filter(
-        entities.Message.user_to_id == id1)
-    data = []
-    try:
-        for user in info1:
-            data.append(user)
-        for user in info2:
-            data.append(user)
-        if data:
-            data = sorted(data, key=attrgetter('sent_on'), reverse=False)
-        else:
-            raise Exception
-            """
     data = []
     info1 = db_session.query(entities.Message).\
         filter(or_(entities.Message.user_from_id == id1, entities.Message.user_from_id == id2))
@@ -109,6 +90,23 @@ def get_chats_id(id1, id2):
     for user in info2:
         data.append(user)
     return Response(json.dumps(data, cls=connector.AlchemyEncoder), status=200, mimetype='application/json')
+
+@app.route('/mobile/chat/getConversation/<id1>/and/<id2>', methods = ['GET'])
+def get_chats_idMobile(id1, id2):
+    db_session = db.getSession(engine)
+    chats = db_session.query(entities.Message).filter(
+        or_(
+            and_(entities.Message.user_from_id == id1, entities.Message.user_to_id == id2),
+            and_(entities.Message.user_from_id == id2, entities.Message.user_to_id == id1),
+        )
+    )
+    data = []
+    for chat in chats:
+        data.append(chat)
+    message = {'response' : data}
+    return Response(json.dumps(message, cls=connector.AlchemyEncoder), status=200, mimetype='application/json')
+
+
 
 
 @app.route('/chat/firstCheck/<id1>/and/<id2>', methods = ['PUT'])
@@ -195,6 +193,16 @@ def get_users():
         data.append(user)
     return Response(json.dumps(data, cls=connector.AlchemyEncoder), mimetype='application/json')
 
+@app.route('/mobile/users', methods = ['GET'])
+def get_usersMobile():
+    session = db.getSession(engine)
+    dbResponse = session.query(entities.User)
+    data = []
+    for user in dbResponse:
+        data.append(user)
+    message = {'data' : data}
+    return Response(json.dumps(message, cls=connector.AlchemyEncoder), mimetype='application/json')
+
 @app.route('/users', methods = ['POST'])
 def create_user():
     c =  json.loads(request.form['values'])
@@ -231,6 +239,7 @@ def delete_user():
     session.commit()
     return "User Deleted"\
 
+
 # - - - - - - - - - - - - - - - - - - - - - -#
 # - - - - - - C R U D  U S E R S - - - - - - #
 # - - - - - - - - - - - - - - - - - - - - - -#
@@ -259,6 +268,20 @@ def get_user_allExcept(id):
         message = { 'status': 404, 'message': 'Not Found'}
         return Response(message, status=404, mimetype='application/json')
 
+@app.route('/mobile/user/allExcept/<id>', methods = ['GET'])
+def get_user_allExceptMobile(id):
+    db_session = db.getSession(engine)
+    try:
+        dbResponse = db_session.query(entities.User).filter(entities.User.id != id)
+        data = []
+        for user in dbResponse:
+            data.append(user)
+        message = {'data' : data}
+        return Response(json.dumps(message, cls=connector.AlchemyEncoder), status=200, mimetype='application/json')
+    except Exception:
+        message = { 'status': 404, 'message': 'Not Found'}
+        return Response(message, status=404, mimetype='application/json')
+
 # - - - - - - - - - - - - - - - - - - - - - -#
 # - - - - - - - - L O G I N  - - - - - - - - #
 # - - - - - - - - - - - - - - - - - - - - - -#
@@ -281,6 +304,27 @@ def authenticate():
             ).one()
         session['logged_user']=user.id
         message = {'message': 'Authorized'}
+        message = json.dumps(message, cls=connector.AlchemyEncoder)
+        return Response(message, status=200, mimetype='application/json')
+    except Exception:
+        message = {'message': 'Unauthorized'}
+        message = json.dumps(message, cls=connector.AlchemyEncoder)
+        return Response(message, status=401, mimetype='application/json')
+
+@app.route('/mobile/authenticate', methods = ["POST"])
+def authenticateMobile():
+    message = json.loads(request.data)
+    username = message['username']
+    password = message['password']
+    #2. look in database
+    db_session = db.getSession(engine)
+    try:
+        user = db_session.query(entities.User
+            ).filter(entities.User.username == username
+            ).filter(entities.User.password == password
+            ).one()
+        session['logged_user']=user.id
+        message = {'message': 'Authorized', 'user_id': user.id, 'username': user.name}
         message = json.dumps(message, cls=connector.AlchemyEncoder)
         return Response(message, status=200, mimetype='application/json')
     except Exception:

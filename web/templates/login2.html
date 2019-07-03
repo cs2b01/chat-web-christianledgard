@@ -103,17 +103,11 @@
             contentType: 'application/json',
             data : message,
             dataType:'json',
-            success: function(response){
-                //alert(JSON.stringify(response));
-				$('#action').html(response['statusText']);
-            },
 						success: function(response) {
 							$('#loading').hide();
 							$('#ok').show();
 							window.location.href = "http://127.0.0.1:8080/"
             },
-
-            //If there was no resonse from the server
             error: function(response){
 							$('#loading').hide();
 							$('#fail').show();
